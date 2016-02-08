@@ -1,0 +1,14 @@
+<div class="container">
+  <%= render "qset_context" %>
+  <%= render "qset_list" %>
+  <% if can? :manage, Qset %>
+    <%= render "modal_edit_qset" %>
+    <%= render "modal_new_qset" %>
+  <% end %>
+</div>
+
+<script>
+  $(document).ready(function(){
+    initQsets();
+  });
+</script>

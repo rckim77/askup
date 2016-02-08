@@ -1,18 +1,26 @@
-// Place all the styles related to the questions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-#all-mine-filter{
-  margin-bottom: 15px;
+.all-mine-other-filter {
+  margin-right: 25px;  // aligns with right side of question list
 }
 
-.panel-title {
-  .btn-flat {
-    color: white;
-    &:hover {
-      color: white;
-    }
+// (All-mine-filter relocation at different screen sizes)
+// On small screens (bootstrap xs) show all-mine-other filter
+// just above the question list, since it wraps onto its own .row
+#all-mine-filter-container-xs {
+  display: none;
+}
+@media only screen and (max-width: 767px) {
+  #all-mine-filter-container-xs {
+    display: block;
   }
+  #all-mine-filter-container {
+    display: none;
+  }
+}
+// End of (All-mine-filter relocation at different screen sizes)
+
+ul.qset-list-compressed {
+  list-style: none;
+  padding-left: 10px;
 }
 
 .btn-div{
@@ -78,29 +86,44 @@
 
 .question-voting {
   float: left;
+  margin: 12px 10px 0px 10px;
 }
 
 .downvote-button, .upvote-button {
   color: black;
   cursor: pointer;
+  display: block;
 }
 
-.net-votes p {
-  font-size: 24px;
-  text-align: center;
-  margin: 10px 0 0 0;
+.net-votes {
+  float: left;
+  margin: 0px 10px 0px 10px;
+
+  p {
+    font-size: 24px;
+    text-align: center;
+    margin: 12px 0 0 0;
+  }
 }
 
 .question-content {
+  cursor: default;
   float: left;
+  font-size: 24px;
   width: 100%;
   word-wrap: break-word;
-
-  a {
-    font-size: 24px;
+  // right- and top-align edit/delete icons
+  .actions {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
+}
+
+.qset-list {
+  cursor:default;  // cursor won't change to caret/text insert over badges
 }
 
 .col-sm-6 {
   width: 50%; /* override base responsive css that removes this when width < 768px */
-} 
+}

@@ -6,7 +6,6 @@ class QuestionsController < ApplicationController
   def show
     @feedback_active = !!current_user
     @new_answer = @question.answers.new
-
   end
 
   # loads the new question page, allowing user to enter a new question/answer combo in a form
@@ -26,6 +25,11 @@ class QuestionsController < ApplicationController
     question = current_user.questions.new(question_params)
     question.answers.first.creator = current_user
     question.save
+
+    # users get one vote for their own questions by default
+    # (so their karma/score improves as they create questions)
+    current_user.vote_for(question)
+
     msg = "Your question has been submitted! Enter another if you would like."
     redirect_to new_question_path, notice: msg
   end
